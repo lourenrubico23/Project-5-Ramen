@@ -7,16 +7,46 @@
 .header{
   background-image: url('../../img/wood-bg.jpg');
   background-repeat: no-repeat;
-  @include imgCover(59.2rem,100%);
+  position: relative;
+   @include imgCover(80rem,100%);
   @include mediaQuery{
-    @include imgCover(90.8rem,100%);
+   @include imgCover(59.2rem,100%);
   }
     &__wrapper{ 
-        @include flex (center,center);
-        ul{
-            margin: 5rem 0;
+        @include flex (space-between,center);
+        img{
+            @include imgCover(unset,8rem);
+            
         }
+        ul{
+            margin-block: 0;
+            margin: 0;
+            padding-inline-start: 0;
+            @include mediaQuery{
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        
     }
+    .toggle__button{
+        display: none;
+        @include mediaQuery{
+            display: block;
+        }
+            span{
+                display: block;
+                background-color: $clr--light;
+                width: 4rem;
+                height: .5rem;
+
+                &:nth-child(2){
+                    margin: .5rem 0;
+                }
+                
+            }
+        }
     &__title{
         margin: 6rem 0;
         h1, h3{
@@ -28,41 +58,33 @@
         }
     }
    
-    img{
+    .ramen{
         position: absolute;
-        &:nth-child(1){
-        top: 39.9rem;
-        left: 0;
+        bottom: 0;
+        left: 10%;
         @include mediaQuery{
-           top: 40rem;
-           left: 20%;
-        }
-        }
-        &:nth-child(2){
-            @include imgCover(unset,8rem);
-            margin: 3rem 2rem;
-            @include mediaQuery{
-                @include imgCover(unset,10rem);
-                margin: 3rem 30rem;
-            }
-        }
-    }
-     &__nav{
-        @include mediaQuery{
-          ul{
-            .header__button{
-                background-color: $clr--primary;
-                padding: .5rem 1rem;
-                font-weight: 500;
-            }
-            li{
-                font-weight: 500;
-            }
-        }  
+            left: 0;
         }
         
     }
-    
+     &__nav{
+        @include mediaQuery{
+          position: absolute;
+          left: 0;
+          top: 0;
+          background-color: $clr--dark;
+          width: 100%;
+        }
+        
+    }
+    &__button{
+        background-color: $clr--primary;
+        padding: .5rem 1rem;
+        font-weight: 500;
+        @include mediaQuery{
+            display: none;
+        }
+    }
 }
 
 .order{
@@ -75,10 +97,10 @@
         }
         .order__img{
             @include grid(5);
-            &__details{
-                text-align: center;
-               
+            @include mediaQuery{
+                @include grid(1);
             }
+            
             h4{
                 margin: 1rem;
             }
@@ -87,8 +109,21 @@
                 font-size: 3rem;
                 color: $clr--accent;
                 margin-top: 5rem;
+                @include mediaQuery{
+                    transform: rotate(90deg);
+                }
             }
         }
+    }
+    &__details{
+        text-align: center;
+        img{
+            @include mediaQuery{
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
+       
     }
 }
 
@@ -112,13 +147,17 @@
     &__card{
         @include grid(2, 5rem);
         margin-left: 0;
+        @include mediaQuery{
+            @include grid(1, 5rem);
+        }
     }
     &__details{
-        @include grid(2,1rem);
-            &__content{
-                margin: 1rem;
-                
-            }
+        @include flex (space-between,start);
+        @include mediaQuery{
+            flex-direction: column-reverse;
+            @include flex (space-between,center);
+        }
+            
             h2{
                 color: black;
                 font-weight: normal;
@@ -129,6 +168,13 @@
             p{
                 color: $clr--light;
             }
+    }
+    &__content{
+        width: 70%;
+        @include mediaQuery{
+            width: 100%;
+            text-align: center;
+        }
     }
     a{
         background-color: $clr--dark;
@@ -169,10 +215,11 @@
     background-color: $clr--dark;
     padding: 5rem 0;
     &__wrapper{
-        @include grid(1);
+       @include flex(space-between,center);
         @include mediaQuery{
-            @include unevengrid(1fr 2fr 1fr, 5rem);
-        align-items: center;
+            flex-direction: column;
+            gap: 2rem;
+         
         }
     }
     &__social{
@@ -188,5 +235,11 @@
             padding: 1rem;
             font-weight: bold;
         }   
+    }
+    &__contact{
+        text-align: center;
+        @include mediaQuery{
+            text-align: center;
+        }
     }
 }
